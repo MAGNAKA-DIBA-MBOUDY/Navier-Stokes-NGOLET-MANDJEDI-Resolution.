@@ -19,3 +19,5 @@ Ce travail présente la résolution du problème de la régularité globale des 
 
 ---
 *Lauréat du Prix CENAREST de Mathématiques et de Physique*
+⚖️ Licence
+Ce travail est sous licence Creative Commons Attribution 4.0 International (CC BY 4.0).
