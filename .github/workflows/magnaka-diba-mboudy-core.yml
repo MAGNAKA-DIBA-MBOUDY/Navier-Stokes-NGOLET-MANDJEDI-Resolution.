@@ -1,64 +1,28 @@
-# =================================================================
-# PROJET : RÉSOLUTION DE L'ÉQUATION DE NAVIER-STOKES
-# AUTEUR : EULOGE HERVÉ KASTOR MAGNAKA DIBA MBOUDY
-# DISTINCTION : PRIX CENAREST (MATHÉMATIQUES, PHYSIQUE ET NTIC)
-# AFFILIATION : INPTIC, GABON
-# ORCID : 0009-0006-7558-9501
-# CONTACT : magnakadibamboudy@inptic-ga.org
-# =================================================================
+name: Workflow Scientifique - MAGNAKA DIBA MBOUDY
 
-import numpy as np
+on:
+  push:
+    branches: [ "main" ]
 
-class IA_MAGNAKA_DIBA_MBOUDY:
-    """
-    Modèle théorique pour la résolution des équations de Navier-Stokes 
-    utilisant les constantes MANDJEDI et NGOLET.
-    """
-    def __init__(self, viscosite=1e-6, densite=1000):
-        self.nu = viscosite  # Viscosité cinématique
-        self.rho = densite   # Densité du fluide
-        
-        # --- CONSTANTES FONDAMENTALES DU MODÈLE ---
-        # Lambda_M : Constante MANDJEDI (Régime Non Uniforme)
-        self.Lambda_M = 1.0618  # Facteur de régularisation théorique
-        
-        # Sigma_N : Constante NGOLET (Régime Semi-Uniforme)
-        self.Sigma_N = 0.7071   # Seuil de transition de phase
-        
-    def resoudre_fluide(self, u_init, grad_p):
-        """
-        Théorème de MAGNAKA DIBA MBOUDY :
-        U_final = (Lambda_M * U_init) - (Sigma_N * grad_P / rho)
-        """
-        # Stabilisation par la constante MANDJEDI
-        stabilisation = self.Lambda_M * u_init
-        
-        # Correction de pression par la constante NGOLET
-        u_final = stabilisation - (self.Sigma_N * grad_p / self.rho)
-        
-        return u_final
+jobs:
+  validation-theoreme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
 
-# --- PROGRAMME DE VALIDATION ---
-if __name__ == "__main__":
-    print("====================================================")
-    print("   IA DE MAGNAKA DIBA MBOUDY - MOTEUR DE CALCUL     ")
-    print("====================================================")
-    print(f"Auteur: Euloge Hervé Kastor MAGNAKA DIBA MBOUDY")
-    print(f"ORCID: 0009-0006-7558-9501 | INPTIC GABON")
-    print("-" * 52)
-    
-    # Initialisation
-    modele = IA_MAGNAKA_DIBA_MBOUDY()
-    
-    # Données de test
-    vitesse_entree = np.array([2.5, 0.0, 0.0])
-    pression = np.array([10.0, 0.0, 0.0])
-    
-    # Exécution du Théorème
-    resultat = modele.resoudre_fluide(vitesse_entree, pression)
-    
-    print(f"CONSTANTE MANDJEDI (Lambda_M) : {modele.Lambda_M}")
-    print(f"CONSTANTE NGOLET   (Sigma_N)  : {modele.Sigma_N}")
-    print(f"VITESSE STABILISÉE PAR LE MODÈLE : {resultat}")
-    print("Statut : Convergence vérifiée.")
-    print("====================================================")
+      - name: Identification Scientifique
+        run: |
+          echo "Inventeur: MAGNAKA DIBA MBOUDY EULOGE HERVÉ KASTOR"
+          echo "Affiliation: INPTIC GABON | Prix CENAREST"
+          echo "ORCID: 0009-0006-7558-9501"
+
+      - name: Configuration Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Execution de l'IA de Simulation
+        run: |
+          pip install numpy
+          python simulation_navier_stokes.py
