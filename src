@@ -1,18 +1,1 @@
-# Auteur: EULOGE HERVÉ KASTOR MAGNAKA DIBA MBOUDY
-# ORCID: 0009-0006-7558-9501
-import numpy as np
 
-class IA_MAGNAKA_DIBA_MBOUDY:
-    def __init__(self):
-        # Constante MANDJEDI (Non Uniforme)
-        self.Lambda_M = 1.0618 
-        # Constante NGOLET (Semi Uniforme)
-        self.Sigma_N = 0.7071
-
-    def resoudre(self, u_init):
-        return u_init * self.Lambda_M * self.Sigma_N
-
-if __name__ == "__main__":
-    modele = IA_MAGNAKA_DIBA_MBOUDY()
-    print(f"Modèle de MAGNAKA DIBA MBOUDY activé.")
-    print(f"Lambda_M: {modele.Lambda_M} | Sigma_N: {modele.Sigma_N}")
